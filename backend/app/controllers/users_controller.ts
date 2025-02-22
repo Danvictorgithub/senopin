@@ -17,11 +17,11 @@ export default class UsersController {
     const payload = await request.validateUsing(createUserValidator)
     const emailCheck = await User.findBy('email', payload.email)
     if (emailCheck) {
-      return response.badRequest('Email already exists')
+      return response.badRequest({ message: 'Email already exists' })
     }
     const usernameCheck = await User.findBy('username', payload.username)
     if (usernameCheck) {
-      return response.badRequest('Username already exists')
+      return response.badRequest({ message: 'Username already exists' })
     }
     return User.create(payload)
   }
