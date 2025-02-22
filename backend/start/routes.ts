@@ -21,11 +21,17 @@ router
     router
       .group(() => {
         router.post('login', [AuthController, 'login'])
-        router.get('me', [AuthController, 'me']).use(
-          middleware.auth({
-            guards: ['api'],
+        router.post('signup', [AuthController, 'signup'])
+        router
+          .group(() => {
+            router.post('logout', [AuthController, 'logout'])
+            router.get('me', [AuthController, 'me'])
           })
-        )
+          .use(
+            middleware.auth({
+              guards: ['api'],
+            })
+          )
       })
       .prefix('auth'),
       router
