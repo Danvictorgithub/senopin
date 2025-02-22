@@ -1,0 +1,32 @@
+# Backend (AdonisJS)
+backend/node_modules
+backend/build
+backend/tmp
+backend/.env
+backend/.env.local
+backend/.env.production.local
+backend/.env.development.local
+backend/public/assets
+backend/npm-debug.log
+backend/yarn-error.log
+backend/.fleet
+backend/.idea
+backend/.vscode
+backend/.DS_Store
+
+# Frontend (NuxtJS)
+frontend/.output
+frontend/.data
+frontend/.nuxt
+frontend/.nitro
+frontend/.cache
+frontend/dist
+frontend/node_modules
+frontend/logs
+frontend/*.log
+frontend/.DS_Store
+frontend/.fleet
+frontend/.idea
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
