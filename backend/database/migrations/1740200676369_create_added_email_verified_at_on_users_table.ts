@@ -5,13 +5,13 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.table(this.tableName, (table) => {
-      table.boolean('email_verified').defaultTo(false)
+      table.timestamp('email_verified_at').defaultTo(null)
     })
   }
 
   async down() {
     this.schema.table(this.tableName, (table) => {
-      table.dropColumn('email_verified')
+      table.dropColumn('email_verified_at')
     })
   }
 }

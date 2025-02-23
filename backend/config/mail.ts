@@ -14,8 +14,8 @@ const smtpConfig: SMTPConfig = {
       ? undefined
       : {
           type: 'login',
-          user: env.get('SMTP_USERNAME'),
-          pass: env.get('SMTP_PASSWORD'),
+          user: env.get('SMTP_USERNAME') as string,
+          pass: env.get('SMTP_PASSWORD') as string,
         },
 }
 
