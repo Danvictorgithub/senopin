@@ -1,3 +1,4 @@
+import UserRegistered from '#events/user_registered'
 import User from '#models/user'
 import { createUserValidator } from '#validators/user'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -23,7 +24,9 @@ export default class UsersController {
     if (usernameCheck) {
       return response.badRequest({ message: 'Username already exists' })
     }
-    return User.create(payload)
+    const newUser = await User.create(payload)
+    UserRegistered.dispatch(newUser)
+    return newUser
   }
 
   /**
