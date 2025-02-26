@@ -9,6 +9,9 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 import { throttlePasswordReset } from './limiter.js'
+import { cuid } from '@adonisjs/core/helpers'
+import drive from '@adonisjs/drive/services/main'
+import fs from 'node:fs'
 
 const AuthController = () => import('#controllers/auth_controller')
 const UsersController = () => import('#controllers/users_controller')
@@ -61,3 +64,17 @@ router
       .use(['index', 'store', 'update', 'destroy'], middleware.allow_development())
   })
   .prefix('api')
+
+router
+  .post('upload-test', async ({ request, response }) => {
+    const file = request.file('file')
+    if (!file) {
+      response.abort({ message: 'No file uploaded' })
+    }
+    const filename = `${cuid()}.${file!.extname}`
+    const fileBuffer = fs.readFileSync(file!.tmpPath!)
+    fs.rmSync(file!.tmpPath!)
+    await drive.use().put(filename, fileBuffer)
+    return { message: 'File uploaded' }
+  })
+  .use(middleware.allow_development())
