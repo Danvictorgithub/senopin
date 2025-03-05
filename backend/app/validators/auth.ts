@@ -1,4 +1,5 @@
 import vine from '@vinejs/vine'
+import { DateTime } from 'luxon'
 
 const emailOrUsername = vine
   .group([
@@ -19,4 +20,28 @@ export const loginValidator = vine.compile(
       password: vine.string().minLength(8),
     })
     .merge(emailOrUsername)
+)
+
+export const signupValidator = vine.compile(
+  vine.object({
+    username: vine.string().minLength(4).maxLength(32),
+    email: vine.string().email(),
+    password: vine.string().minLength(8),
+    full_name: vine.string().minLength(4).maxLength(32),
+    image: vine
+      .file({
+        extnames: ['jpg', 'jpeg', 'png'],
+        size: '2mb',
+      })
+      .optional(),
+    // @ts-ignore
+    birth_date: vine
+      .date()
+      // @ts-ignore
+      .beforeOrEqual((field) => {
+        return DateTime.now().minus({ years: 13 }).toISODate()
+      })
+      .transform((value) => DateTime.fromISO(value.toISOString()).toISODate()),
+    bio: vine.string().minLength(4).maxLength(255).optional(),
+  })
 )

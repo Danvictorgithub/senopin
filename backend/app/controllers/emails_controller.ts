@@ -115,8 +115,6 @@ export default class EmailsController {
     }
     // Convert expires (timestamp) to Luxon DateTime
     const expiresAt = DateTime.fromSeconds(expires)
-    console.log(expiresAt.toMillis())
-    console.log(user.passwordResetAt?.toMillis())
     // Ensure reset link hasn't been used before expiration
     if (user.passwordResetAt && user.passwordResetAt.toMillis() > expiresAt.toMillis()) {
       return response.badRequest({ message: 'Reset link has already been used or expired' })

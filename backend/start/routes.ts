@@ -17,6 +17,7 @@ const AuthController = () => import('#controllers/auth_controller')
 const UsersController = () => import('#controllers/users_controller')
 const EmailsController = () => import('#controllers/emails_controller')
 
+const ProfilesController = () => import('#controllers/profiles_controller')
 router.get('/', async () => {
   return {
     message: 'Senopin API v1.0.0 by DV8',
@@ -62,6 +63,13 @@ router
       .resource('users', UsersController)
       .apiOnly()
       .use(['index', 'store', 'update', 'destroy'], middleware.allow_development())
+
+    // /api/profiles
+    router
+      .resource('profiles', ProfilesController)
+      .apiOnly()
+      .use(['index', 'store', 'update', 'destroy'], middleware.allow_development())
+    router.patch('profiles', [ProfilesController, 'updateUserProfile']).use(middleware.auth())
   })
   .prefix('api')
 

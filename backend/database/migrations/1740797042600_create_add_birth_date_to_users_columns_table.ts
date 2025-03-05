@@ -5,13 +5,13 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.table(this.tableName, (table) => {
-      table.string('image').nullable().after('username')
+      table.date('birth_date').after('username').nullable()
     })
   }
 
   async down() {
     this.schema.table(this.tableName, (table) => {
-      table.dropColumn('image')
+      table.dropColumn('birth_date')
     })
   }
 }
