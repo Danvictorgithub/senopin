@@ -1,85 +1,9 @@
 <script setup lang="ts">
-const route = useRoute()
-const isMenuOpen = ref(false)
 </script>
 
 <template>
   <div class="flex min-h-screen flex-col">
-    <!-- Header -->
-    <header class="sticky top-0 z-50 w-full border-b bg-white">
-      <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
-        <a href="/" class="flex items-center gap-2">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" -->
-          <!--   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" -->
-          <!--   class="h-6 w-6 text-yellow-400"> -->
-          <!--   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path> -->
-          <!--   <circle cx="12" cy="10" r="3"></circle> -->
-          <!-- </svg> -->
-          <img src="/logo.png" class="h-12 w-12" alt="Senopin Logo">
-          <span class="text-xl font-bold">SenoPin</span>
-        </a>
-        <nav class="hidden md:flex gap-6">
-          <a href="#features" class="text-sm font-medium hover:text-yellow-500 transition-colors">
-            Features
-          </a>
-          <a href="#how-it-works" class="text-sm font-medium hover:text-yellow-500 transition-colors">
-            How It Works
-          </a>
-          <a href="#testimonials" class="text-sm font-medium hover:text-yellow-500 transition-colors">
-            Testimonials
-          </a>
-        </nav>
-        <div class="hidden md:flex gap-4">
-          <button class="rounded-md  px-4 py-2 text-sm font-medium text-black ">
-            <a href="#" class="text-sm font-medium hover:text-yellow-500 transition-colors">
-              Log in
-            </a>
-          </button>
-          <button class="rounded-md bg-yellow-400 px-4 py-2 text-sm font-medium text-black hover:bg-yellow-500">
-            Sign Up
-          </button>
-        </div>
-        <button class="md:hidden" @click="isMenuOpen = !isMenuOpen">
-          <svg v-if="isMenuOpen" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="h-6 w-6">
-            <path d="M18 6 6 18"></path>
-            <path d="m6 6 12 12"></path>
-          </svg>
-          <svg v-else xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      <div v-if="isMenuOpen" class="md:hidden container mx-auto px-4 pb-4">
-        <nav class="flex flex-col gap-4">
-          <a href="#features" class="text-sm font-medium hover:text-yellow-500 transition-colors"
-            @click="isMenuOpen = false">
-            Features
-          </a>
-          <a href="#how-it-works" class="text-sm font-medium hover:text-yellow-500 transition-colors"
-            @click="isMenuOpen = false">
-            How It Works
-          </a>
-          <a href="#testimonials" class="text-sm font-medium hover:text-yellow-500 transition-colors"
-            @click="isMenuOpen = false">
-            Testimonials
-          </a>
-          <div class="flex flex-col gap-2 pt-2">
-            <a href="#" class="text-sm font-medium hover:text-yellow-500 transition-colors">
-              Log in
-            </a>
-            <button class="rounded-md bg-yellow-400 px-4 py-2 text-sm font-medium text-black hover:bg-yellow-500">
-              Sign Up
-            </button>
-          </div>
-        </nav>
-      </div>
-    </header>
-
+    <HomeHeader />
     <main>
       <!-- Hero Section -->
       <section class="relative overflow-hidden bg-yellow-50 py-16 md:py-24">
@@ -365,7 +289,7 @@ const isMenuOpen = ref(false)
       <div class="container mx-auto px-4 md:px-6">
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div class="space-y-4">
-            <a href="/" class="flex items-center gap-2">
+            <NuxtLink href="/" class="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="h-6 w-6 text-yellow-400">
@@ -373,7 +297,7 @@ const isMenuOpen = ref(false)
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
               <span class="text-xl font-bold">SenoPin</span>
-            </a>
+            </NuxtLink>
             <p class="text-sm text-gray-500">
               Share your travel journey with the world. Pin your adventures, connect with fellow travelers.
             </p>
@@ -382,24 +306,24 @@ const isMenuOpen = ref(false)
             <h3 class="text-lg font-bold">Company</h3>
             <ul class="space-y-2">
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   About Us
-                </a>
+                </NuxtLink>
               </li>
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Careers
-                </a>
+                </NuxtLink>
               </li>
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Press
-                </a>
+                </NuxtLink>
               </li>
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Blog
-                </a>
+                </NuxtLink>
               </li>
             </ul>
           </div>
@@ -407,19 +331,19 @@ const isMenuOpen = ref(false)
             <h3 class="text-lg font-bold">Support</h3>
             <ul class="space-y-2">
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Help Center
-                </a>
+                </NuxtLink>
               </li>
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Safety Center
-                </a>
+                </NuxtLink>
               </li>
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Community Guidelines
-                </a>
+                </NuxtLink>
               </li>
             </ul>
           </div>
@@ -427,19 +351,19 @@ const isMenuOpen = ref(false)
             <h3 class="text-lg font-bold">Legal</h3>
             <ul class="space-y-2">
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Terms of Service
-                </a>
+                </NuxtLink>
               </li>
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Privacy Policy
-                </a>
+                </NuxtLink>
               </li>
               <li>
-                <a href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
+                <NuxtLink href="#" class="text-sm text-gray-500 hover:text-yellow-500 transition-colors">
                   Cookie Policy
-                </a>
+                </NuxtLink>
               </li>
             </ul>
           </div>
@@ -450,14 +374,14 @@ const isMenuOpen = ref(false)
               © {{ new Date().getFullYear() }} SenoPin. All rights reserved.
             </p>
             <div class="flex gap-4">
-              <a href="#" class="text-gray-500 hover:text-yellow-500 transition-colors">
+              <NuxtLink href="#" class="text-gray-500 hover:text-yellow-500 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                 </svg>
                 <span class="sr-only">Facebook</span>
-              </a>
-              <a href="#" class="text-gray-500 hover:text-yellow-500 transition-colors">
+              </NuxtLink>
+              <NuxtLink href="#" class="text-gray-500 hover:text-yellow-500 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -465,15 +389,15 @@ const isMenuOpen = ref(false)
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                 </svg>
                 <span class="sr-only">Instagram</span>
-              </a>
-              <a href="#" class="text-gray-500 hover:text-yellow-500 transition-colors">
+              </NuxtLink>
+              <NuxtLink href="#" class="text-gray-500 hover:text-yellow-500 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
                   <path
                     d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
                 </svg>
                 <span class="sr-only">Twitter</span>
-              </a>
+              </NuxtLink>
             </div>
           </div>
         </div>
