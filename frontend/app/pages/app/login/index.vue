@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 const showPassword = ref(false)
+
 </script>
 <template>
 	<div class="bg-white">
