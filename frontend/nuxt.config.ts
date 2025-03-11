@@ -2,13 +2,19 @@
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
-
   future: {
     compatibilityVersion: 4,
   },
-
   devServer: {
     port: 3200,
+  },
+  app: {
+    head: {
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/logo.png" },
+        { rel: "icon", type: "image/png", href: "/logo.png" },
+      ],
+    },
   },
   auth: {
     baseURL: `${process.env.BACKEND_URL}/api/auth`,
@@ -36,5 +42,7 @@ export default defineNuxtConfig({
     "@sidebase/nuxt-auth",
     "@nuxtjs/color-mode",
     "@primevue/nuxt-module",
+    "@vee-validate/nuxt",
   ],
 });
+

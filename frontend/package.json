@@ -21,6 +21,7 @@
     "@nuxtjs/color-mode": "^3.5.2",
     "@primevue/nuxt-module": "^4.3.1",
     "@sidebase/nuxt-auth": "^0.10.0",
+    "@vee-validate/nuxt": "^4.15.0",
     "@vueuse/nuxt": "^12.7.0"
   }
 }
