@@ -51,25 +51,25 @@
 					<form class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
 						<div>
 							<label class="block mb-2 text-sm text-gray-600">First Name</label>
-							<input type="text" placeholder="John"
+							<input type="text" placeholder="Juan"
 								class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none focus:ring focus:ring-opacity-40" />
 						</div>
 
 						<div>
 							<label class="block mb-2 text-sm text-gray-600">Last name</label>
-							<input type="text" placeholder="Snow"
+							<input type="text" placeholder="Dela Cruz"
 								class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none focus:ring focus:ring-opacity-40" />
 						</div>
 
 						<div>
-							<label class="block mb-2 text-sm text-gray-600">Phone number</label>
-							<input type="text" placeholder="XXX-XX-XXXX-XXX"
+							<label class="block mb-2 text-sm text-gray-600">Username</label>
+							<input type="text" placeholder="juandelacruz"
 								class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none focus:ring focus:ring-opacity-40" />
 						</div>
 
 						<div>
 							<label class="block mb-2 text-sm text-gray-600">Email address</label>
-							<input type="email" placeholder="johnsnow@example.com"
+							<input type="email" placeholder="juandelacruz@example.com"
 								class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg focus:border-yellow-400 focus:ring-yellow-400 focus:outline-none focus:ring focus:ring-opacity-40" />
 						</div>
 
