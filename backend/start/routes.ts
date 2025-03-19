@@ -86,3 +86,15 @@ router
     return { message: 'File uploaded' }
   })
   .use(middleware.allow_development())
+
+router
+  .post('upload-test-new', async ({ request, response }) => {
+    const file = request.file('file')
+    if (!file) {
+      response.abort({ message: 'No file uploaded' })
+    }
+    const filename = `${cuid()}.${file!.extname}`
+    await file!.moveToDisk(filename, 's3', { moveAs: 'buffer' })
+    return { message: 'File uploaded' }
+  })
+  .use(middleware.allow_development())
