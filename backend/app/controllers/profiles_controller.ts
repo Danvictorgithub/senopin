@@ -3,9 +3,6 @@ import { createProfileValidator, updateProfileValidator } from '#validators/prof
 import { cuid } from '@adonisjs/core/helpers'
 import type { HttpContext } from '@adonisjs/core/http'
 import drive from '@adonisjs/drive/services/main'
-import { DateTime } from 'luxon'
-import { readFileSync } from 'node:fs'
-import { rm } from 'node:fs/promises'
 
 export default class ProfilesController {
   /**
@@ -30,11 +27,11 @@ export default class ProfilesController {
 
     // Prepare profile object with image URL if it exists
     let profileObj: Partial<Omit<Profile, 'id'>> = { ...rest }
+
+    // Handle image upload
     if (image) {
-      // Note: flydrive doesn't yet support Supabase S3 storage for media files waiting for the next release on file.moveToDisk performCopy:false option
       const filename = `${cuid()}.${image.extname}`
-      await drive.use().put(filename, readFileSync(image.tmpPath as string))
-      await rm(image.tmpPath as string)
+      await image.moveToDisk(filename, 's3', { moveAs: 'buffer' })
       const imageUrl = await drive.use().getUrl(filename)
       profileObj['image'] = imageUrl
     }
@@ -57,18 +54,21 @@ export default class ProfilesController {
     const profile = await Profile.findOrFail(params.id)
     const { image, ...rest } = await request.validateUsing(updateProfileValidator)
     let profileObj: Partial<Omit<Profile, 'id'>> = { ...rest }
+
+    // Handle image upload
     if (image) {
-      // Note: flydrive doesn't yet support Supabase S3 storage for media files
-      // waiting for the next release on file.moveToDisk performCopy:false option
       const filename = `${cuid()}.${image.extname}`
-      await drive.use().put(filename, readFileSync(image.tmpPath as string))
-      await rm(image.tmpPath as string)
+      await image.moveToDisk(filename, 's3', { moveAs: 'buffer' })
       const imageUrl = await drive.use().getUrl(filename)
       profileObj['image'] = imageUrl
     }
     profile.merge(profileObj).save()
     return profile
   }
+
+  /**
+   * Handle form submission for the updating profile via authenticated user
+   */
   async updateUserProfile({ request, auth, response }: HttpContext) {
     const user = auth.getUserOrFail()
     if (!user.profile) {
@@ -77,18 +77,18 @@ export default class ProfilesController {
     const profile = await Profile.findOrFail(user.profile.id)
     const { image, ...rest } = await request.validateUsing(updateProfileValidator)
     let profileObj: Partial<Omit<Profile, 'id'>> = { ...rest }
+
+    // Handle image upload
     if (image) {
-      // Note: flydrive doesn't yet support Supabase S3 storage for media files
-      // waiting for the next release on file.moveToDisk performCopy:false option
       const filename = `${cuid()}.${image.extname}`
-      await drive.use().put(filename, readFileSync(image.tmpPath as string))
-      await rm(image.tmpPath as string)
+      await image.moveToDisk(filename, 's3', { moveAs: 'buffer' })
       const imageUrl = await drive.use().getUrl(filename)
       profileObj['image'] = imageUrl
     }
     profile.merge(profileObj).save()
     return profile
   }
+
   /**
    * Delete record
    */
